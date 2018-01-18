@@ -5,9 +5,9 @@ import { UserData } from '../../providers/user-data';
 import { UserOptions,LoginDetail } from '../../interfaces/user-options';
 import { ForgotpasswordPage } from '../forgotpassword/forgotpassword';
 import { SignupPage } from '../signup/signup';
-import { ChangepasswordPage } from '../changepassword/changepassword';
 import { DashboardPage } from '../dashboard/dashboard';
 import { SetupService } from '../../providers/setup.services';
+
 @Component({
   selector: 'page-user',
   templateUrl: 'login.html'
@@ -21,6 +21,7 @@ export class LoginPage {
   public userName:any;
 constructor(public userData: UserData,public navCtrl: NavController,public toastCtrl: ToastController,public events: Events,public menuCtrl: MenuController, public navParams: NavParams,public _setupService: SetupService,public loadingCtrl: LoadingController) {
 this.setCurrentPosition();
+
   }
  public setCurrentPosition() {
       if ("geolocation" in navigator) {
@@ -40,8 +41,7 @@ onlogin1(form: NgForm){
         loading.present();
        this._setupService.createLoginDetail(this.loginDetail).subscribe((result) => { 
           if(result.statusCode== 200){
-            this.responseData = result;
-             console.log("res = = "+JSON.stringify(this.responseData));
+            this.responseData = result;             
              localStorage.setItem('logindetail',JSON.stringify(this.responseData));
               this.user=JSON.parse(localStorage.getItem('logindetail'));   
               this.userName=this.responseData.trader.email; 
@@ -70,7 +70,7 @@ onlogin1(form: NgForm){
      // enable the root left menu when leaving the tutorial page
     this.menuCtrl.enable(true);
   }
-  onlogin12(form: NgForm) {   
+  onlogin11(form: NgForm) {   
     this.submitted = true; 
     if (form.valid) {  
       this.userData.login(this.login.username);  
