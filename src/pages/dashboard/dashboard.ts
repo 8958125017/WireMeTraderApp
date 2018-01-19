@@ -47,6 +47,7 @@ export class DashboardPage {
        this.user=JSON.parse(localStorage.getItem('logindetail'));         
        if(this.user!=null||this.user!=undefined){
        this.userEmail.email=this.user.trader.email;  
+        this.events.publish("shareObject", this.userEmail.email); 
       }
    }
 
